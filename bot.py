@@ -7,16 +7,22 @@ TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 
 def get_wttj():
-    """Recherche sur Welcome to the Jungle"""
-    # Recherche multi-mots clés
+    def get_wttj():
+    """Recherche sur WTTJ - Filtre CDI et CDD"""
+    # On ajoute le paramètre 'contract_type=full_time,temporary' pour CDI et CDD
     query = "juriste%20propriete%20intellectuelle%20audiovisuel%20medias%20business%20affairs"
-    url = f"https://www.welcometothejungle.com/fr/jobs?query={query}&aroundQuery=France&sortBy=mostRecent"
+    url = f"https://www.welcometothejungle.com/fr/jobs?query={query}&aroundQuery=France&sortBy=mostRecent&f=contract_type%3Afull_time%2Ctemporary"
+    
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     try:
         response = requests.get(url, headers=headers, timeout=10)
         soup = BeautifulSoup(response.text, 'html.parser')
-        jobs = soup.find_all('div', class_='sc-6i2fy3-3') # Classe à surveiller si le site change
+        # Note: on ajuste la recherche des balises si nécessaire
+        jobs = soup.find_all('div', data_testimonial_id=False) 
+        
+        results = "🌴 **WELCOME TO THE JUNGLE (CDI/CDD)**\n"
+        # ... reste du code identique ...
         
         results = "🌴 **WELCOME TO THE JUNGLE**\n"
         for job in jobs[:5]:
