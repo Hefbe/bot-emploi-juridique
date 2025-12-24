@@ -8,7 +8,9 @@ CHAT_ID = os.getenv('CHAT_ID')
 
 def get_wttj():
     """Recherche sur Welcome to the Jungle"""
-    url = "https://www.welcometothejungle.com/fr/jobs?query=juriste%20propriete%20intellectuelle%20business%20affairs&aroundQuery=France&sortBy=mostRecent"
+    # Recherche multi-mots clés
+    query = "juriste%20propriete%20intellectuelle%20audiovisuel%20medias%20business%20affairs"
+    url = f"https://www.welcometothejungle.com/fr/jobs?query={query}&aroundQuery=France&sortBy=mostRecent"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     try:
@@ -29,7 +31,9 @@ def get_wttj():
 def get_linkedin():
     """Recherche sur LinkedIn (version publique)"""
     # Filtre f_TPR=r86400 pour les dernières 24h
-    url = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Juriste%20Propri%C3%A9t%C3%A9%20Intellectuelle%20Business%20Affairs&location=France&f_TPR=r86400&sortBy=DD"
+   # Recherche groupée : on utilise OR pour cibler tous les intitulés d'un coup
+    keywords = '"Juriste PI" OR "Business Affairs" OR "Droit de l\'audiovisuel" OR "Droit des médias"'
+    url = f"https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={keywords}&location=France&f_TPR=r86400&sortBy=DD"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
     try:
