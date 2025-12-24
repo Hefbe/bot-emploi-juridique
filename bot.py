@@ -11,7 +11,9 @@ def get_wttj():
     """Recherche sur WTTJ - Filtre CDI et CDD"""
     # On ajoute le paramètre 'contract_type=full_time,temporary' pour CDI et CDD
     query = "juriste%20propriete%20intellectuelle%20audiovisuel%20medias%20business%20affairs"
-    url = f"https://www.welcometothejungle.com/fr/jobs?query={query}&aroundQuery=France&sortBy=mostRecent&f=contract_type%3Afull_time%2Ctemporary"
+    # f_JT=F%2CT filtre pour CDI (F) et CDD (T)
+    keywords = '"Juriste PI" OR "Business Affairs" OR "Droit de l\'audiovisuel" OR "Droit des médias"'
+    url = f"https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords={keywords}&location=France&f_TPR=r86400&f_JT=F%2CT&sortBy=DD"
     
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
     
