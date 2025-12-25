@@ -1,7 +1,7 @@
 name: Alerte Emploi
 on:
   schedule:
-    - cron: '0 8,17 * * *' # S'exécute à 8h et 17h (heure UTC)
+ - cron: '0 8,11 * * *' # S'exécute à 9h et 12h (heure UTC+1)
   workflow_dispatch: # Permet de le lancer manuellement pour tester
 
 jobs:
