@@ -1,7 +1,7 @@
 name: Alerte Emploi
 on:
   schedule:
-    - cron: '0 8,11 * * *'
+    - cron: '0 8,17 * * *'
   workflow_dispatch:
 
 jobs:
